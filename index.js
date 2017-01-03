@@ -48,11 +48,18 @@ class TVAccessory {
 
   _onSetOn(on, cb) {
     this.isAlive((isOn) => {
-      if (isOn) {
+      // Turn off the TV
+      if (!on && isOn) {
         return this.turnOff(() => cb(null));
       }
 
-      return this.turnOn(() => cb(null));
+      // Turn on the TV
+      if (on && !isOn) {
+        return this.turnOn(() => cb(null));
+      }
+
+      // Nothing to do
+      return cb(null);
     });
   }
 
@@ -87,11 +94,11 @@ class TVAccessory {
         device.close();
         browser.stop();
 
-        // Wait 15 secs for the TV to connect to the network again...
+        // Wait 14 secs for the TV to connect to the network again...
         setTimeout(() => {
           this.log("TV should be ON.");
           cb(null);
-        }, 15 * 1000);
+        }, 14 * 1000);
       });
     });
     browser.start();
