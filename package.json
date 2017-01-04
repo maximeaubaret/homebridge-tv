@@ -18,7 +18,7 @@
     "homebridge": ">=0.2.0"
   },
   "dependencies": {
-    "airplay": "git+ssh://github.com/maximeaubaret/node-airplay",
+    "airplay": "maximeaubaret/node-airplay",
     "samsung-remote": "^1.2.5"
   }
 }
