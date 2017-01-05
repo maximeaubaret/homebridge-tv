@@ -88,7 +88,7 @@ class TVAccessory {
    */
   turnOn(cb) {
     this.log("Turning on the TV...");
-    var browser = require("airplay").createBrowser();
+      var browser = require("airplay").createBrowser();
     browser.on("deviceOnline", (device) => {
       device.play("http://foo/bar", 0, () => {
         device.close();
@@ -97,7 +97,8 @@ class TVAccessory {
         // Wait 14 secs for the TV to connect to the network again...
         setTimeout(() => {
           this.log("TV should be ON.");
-          cb(null);
+          cb && cb(null);
+          cb = null;
         }, 14 * 1000);
       });
     });
